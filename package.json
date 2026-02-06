@@ -11,9 +11,11 @@
     "plop": "plop"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "inflection": "^3.0.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hook-form": "^7.71.2",
     "swr": "^2.4.0",
     "tailwindcss": "^4.0.0",
     "vite-tsconfig-paths": "^6.1.1",
