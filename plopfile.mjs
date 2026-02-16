@@ -62,4 +62,22 @@ export default function (plop) {
       }
     ]
   });
+
+  plop.setGenerator('Form', {
+    description: 'Create a form component for a resource (Component feature)',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Resource name (e.g. User)?'
+      }
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'src/components/{{pascalCase name}}Form.tsx',
+        templateFile: 'stamps/form.hbs',
+      }
+    ]
+  });
 }
