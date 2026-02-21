@@ -80,4 +80,24 @@ export default function (plop) {
       }
     ]
   });
+
+  // Add more here
+
+  // plop.setGenerator('', {
+  //   description: '',
+  //   prompts: [
+  //     {
+  //       type: 'input',
+  //       name: '',
+  //       message: ''
+  //     }
+  //   ],
+  //   actions: [
+  //     {
+  //       type: 'add',
+  //       path: '',
+  //       templateFile: '',
+  //     }
+  //   ]
+  // });
 }
