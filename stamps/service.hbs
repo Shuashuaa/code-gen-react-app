@@ -1,0 +1,36 @@
+import { api } from "@/services/api";
+import { z } from "zod";
+import { 
+    {{pascalCase name}}Schema, 
+    type {{pascalCase name}},
+    type Create{{pascalCase name}}Input,
+    type Update{{pascalCase name}}Input 
+} from "./{{camelCase name}}.schema";
+
+export const {{camelCase name}}Service = {
+    getById: async (id: string): Promise<{{pascalCase name}}> => {
+        // Uses pluralize helper: e.g., /categories/123
+        const data = await api.url(`/{{pluralize (kebabCase name)}}/${id}`).get().json();
+        return {{pascalCase name}}Schema.parse(data);
+    },
+
+    getAll: async (): Promise<{{pascalCase name}}[]> => {
+        // Uses pluralize helper: e.g., /categories
+        const data = await api.url("/{{pluralize (kebabCase name)}}").get().json();
+        return z.array({{pascalCase name}}Schema).parse(data);
+    },
+
+    create: async (payload: Create{{pascalCase name}}Input): Promise<{{pascalCase name}}> => {
+        const data = await api.url("/{{pluralize (kebabCase name)}}").post(payload).json();
+        return {{pascalCase name}}Schema.parse(data);
+    },
+
+    update: async (id: string, payload: Update{{pascalCase name}}Input): Promise<{{pascalCase name}}> => {
+        const data = await api.url(`/{{pluralize (kebabCase name)}}/${id}`).patch(payload).json();
+        return {{pascalCase name}}Schema.parse(data);
+    },
+
+    delete: async (id: string): Promise<void> => {
+        await api.url(`/{{pluralize (kebabCase name)}}/${id}`).delete().res();
+    }
+};

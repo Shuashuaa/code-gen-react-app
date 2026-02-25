@@ -1,0 +1,28 @@
+{{!-- 1. Schema (Zod) --}}
+import { z } from "zod";
+
+export const {{pascalCase name}}Schema = z.object({
+    id: z.string(),
+    {{!-- Add more fields here --}}
+});
+
+export type {{pascalCase name}} = z.infer<typeof {{pascalCase name}}Schema>;
+
+{{!-- 2. Service (Wretch) --}}
+import { api } from "@/services/api";
+
+export const {{camelCase name}}Service = {
+    getById: async (id: string): Promise<{{pascalCase name}}> => {
+        const data = await api.url(`/{{kebabCase name}}s/${id}`).get().json();
+        return {{pascalCase name}}Schema.parse(data);
+    }
+};
+
+{{!-- 3. Hook (SWR) --}}
+import useSWR from "swr";
+
+export const use{{pascalCase name}} = (id: string) => {
+    return useSWR(id ? ["{{kebabCase name}}", id] : null, () => 
+        {{camelCase name}}Service.getById(id)
+    );
+};

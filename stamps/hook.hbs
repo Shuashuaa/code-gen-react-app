@@ -1,0 +1,34 @@
+import useSWR from "swr";
+import useSWRMutation from "swr/mutation";
+import { {{camelCase name}}Service } from "./{{camelCase name}}.service";
+import { type Update{{pascalCase name}}Input } from "./{{camelCase name}}.schema";
+
+// 1. Fetch a single item by ID
+export const use{{pascalCase name}} = (id: string | null) => {
+    return useSWR(
+        id ? ["{{kebabCase name}}", id] : null, 
+        () => {{camelCase name}}Service.getById(id!),
+        { revalidateOnFocus: false, errorRetryCount: 2 }
+    );
+};
+
+// 2. Fetch the full list
+export const use{{pluralize (pascalCase name)}} = () => {
+    return useSWR("{{pluralize (kebabCase name)}}-list", () => {{camelCase name}}Service.getAll());
+};
+
+// 3. Mutation Hook for Updates (No more 'any'!)
+export const useUpdate{{pascalCase name}} = (id: string) => {
+    return useSWRMutation(
+        ["{{kebabCase name}}", id], // This key matches the useSWR key for auto-revalidation
+        (_, { arg }: { arg: Update{{pascalCase name}}Input }) => {{camelCase name}}Service.update(id, arg)
+    );
+};
+
+// 4. Mutation Hook for Deletion
+export const useDelete{{pascalCase name}} = () => {
+    return useSWRMutation(
+        "{{pluralize (kebabCase name)}}-list",
+        (_, { arg: id }: { arg: string }) => {{camelCase name}}Service.delete(id)
+    );
+};
