@@ -1,0 +1,30 @@
+import { use{{pluralize (pascalCase name)}} } from "@/features/{{camelCase name}}";
+
+export const {{pascalCase name}}Table = () => {
+    const { data: {{camelCase (pluralize name)}}, error, isLoading } = use{{pluralize (pascalCase name)}}();
+
+    if (isLoading) return <div>Loading {{lowerCase (pluralize name)}}...</div>;
+    if (error) return <div className="text-red-600">❌ Error: {{lb}}error.message{{rb}}</div>;
+
+    return (
+        <div className="p-5">
+            <h2 className="text-2xl font-bold mb-4">{{titleCase (pluralize name)}}</h2>
+            <table className="w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr className="bg-gray-100">
+                        <th className="p-2 border border-gray-300">ID</th>
+                        <th className="p-2 border border-gray-300">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{lb}} {{camelCase (pluralize name)}}?.map((item) => (
+                        <tr key={{lb}}item.id{{rb}} className="hover:bg-gray-50">
+                            <td className="p-2 border border-gray-300 text-center">{{lb}}item.id{{rb}}</td>
+                            <td className="p-2 border border-gray-300">{{lb}}item.name{{rb}}</td>
+                        </tr>
+                    )) {{rb}}
+                </tbody>
+            </table>
+        </div>
+    );
+};
