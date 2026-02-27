@@ -2,6 +2,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Create{{pascalCase name}}Schema, type Create{{pascalCase name}}Input } from "@/features/{{camelCase name}}";
 
+// Next thing to do:
+// 1.You have to generate resource for {{name}}
+// 2.Update the resource {{name}}.schema.ts to accomodate {{pascalCase name}}Form.tsx form fields.
+
 interface {{pascalCase name}}FormProps {
     onSubmit: (data: Create{{pascalCase name}}Input) => void;
     defaultValues?: Partial<Create{{pascalCase name}}Input>;
@@ -31,6 +35,66 @@ export const {{pascalCase name}}Form = ({ onSubmit, defaultValues }: {{pascalCas
                 />
                 {errors.name && (
                     <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+                )}
+            </div>
+
+            <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">
+                    Email
+                </label>
+                <input
+                    id="email"
+                    type="email"
+                    {...register("email")}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                {errors.email && (
+                    <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                )}
+            </div>
+
+            <div>
+                <label htmlFor="password" className="block text-sm font-medium mb-1">
+                    Password
+                </label>
+                <input
+                    id="password"
+                    type="password"
+                    {...register("password")}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                {errors.password && (
+                    <p className="text-red-600 text-sm mt-1">{errors.password.message}</p>
+                )}
+            </div>
+
+            <div>
+                <label htmlFor="username" className="block text-sm font-medium mb-1">
+                    Username
+                </label>
+                <input
+                    id="username"
+                    type="text"
+                    {...register("username")}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                {errors.username && (
+                    <p className="text-red-600 text-sm mt-1">{errors.username.message}</p>
+                )}
+            </div>
+
+            <div>
+                <label htmlFor="phone" className="block text-sm font-medium mb-1">
+                    Phone
+                </label>
+                <input
+                    id="phone"
+                    type="tel"
+                    {...register("phone")}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                {errors.phone && (
+                    <p className="text-red-600 text-sm mt-1">{errors.phone.message}</p>
                 )}
             </div>
 
