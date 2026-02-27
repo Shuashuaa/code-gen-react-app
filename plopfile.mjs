@@ -25,17 +25,17 @@ export default function (plop) {
       {
         type: 'add',
         path: 'src/features/{{camelCase name}}/use{{pascalCase name}}.ts',
-        templateFile: 'stamps/hook.hbs',
+        templateFile: 'stamps/api-service/hook.hbs',
       },
       {
         type: 'add',
         path: 'src/features/{{camelCase name}}/{{camelCase name}}.service.ts',
-        templateFile: 'stamps/service.hbs',
+        templateFile: 'stamps/api-service/service.hbs',
       },
       {
         type: 'add',
         path: 'src/features/{{camelCase name}}/{{camelCase name}}.schema.ts',
-        templateFile: 'stamps/schema.hbs',
+        templateFile: 'stamps/api-service/schema.hbs',
       },
       {
         type: 'add',
@@ -58,7 +58,7 @@ export default function (plop) {
       {
         type: 'add',
         path: 'src/components/{{pascalCase name}}Table.tsx',
-        templateFile: 'stamps/table.hbs',
+        templateFile: 'stamps/components/table.hbs',
       }
     ]
   });
@@ -76,7 +76,7 @@ export default function (plop) {
       {
         type: 'add',
         path: 'src/components/{{pascalCase name}}Form.tsx',
-        templateFile: 'stamps/form.hbs',
+        templateFile: 'stamps/components/form.hbs',
       }
     ]
   });
